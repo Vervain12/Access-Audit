@@ -2,6 +2,7 @@ import AxePuppeteer from "@axe-core/puppeteer";
 import chromium from "@sparticuz/chromium";
 import puppeteer from "puppeteer-core";
 import { NextResponse } from "next/server";
+import "axe-core";
 
 export async function POST(request) {
   try {
