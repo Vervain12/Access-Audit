@@ -11,7 +11,7 @@ export async function GetAudit(url) {
         const data = await response.json();
         
         if (!response.ok) {
-            throw new Error(data.error || 'Failed to audit page');
+            return { error: 'Failed to audit page. This page may be protected.' };
         }
         
         console.log('Audit results:', data.results);
@@ -21,6 +21,6 @@ export async function GetAudit(url) {
         };
     } catch (err) {
         console.error('Audit error:', err);
-        return err;
+        return { error: 'Failed to audit page. This page may be protected.' };
     }
 } 

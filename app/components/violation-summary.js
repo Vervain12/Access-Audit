@@ -36,7 +36,17 @@ export default function ViolationSummary({ violations, violationRefs, handleExpa
     return (
         <Box sx={{ width: "100%", }}>
             {loading ? (
-                <CircularProgress />
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        height: "100%",
+                        minHeight: 200
+                    }}
+                >
+                    <CircularProgress />
+                </Box>
             ) : (
                 <Box sx={{ backgroundColor: '#F9FAFB', padding: 2, borderRadius: 2, height: "100%", overflow: "auto", overflowX: "hidden"}}>
                     <Box sx={{ flexDirection: "row", display: "flex", alignItems: "flex-start"}}>

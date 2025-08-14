@@ -10,6 +10,7 @@ import { GetUIReview } from "../services/ai-services";
 import UISummary from "../components/ui-summary";
 import UiElements from "../components/ui-elements-list";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import ErrorModal from "../components/error-modal";
 
 function AuditorContent() {
     const searchParams = useSearchParams();
@@ -23,6 +24,8 @@ function AuditorContent() {
     const [uiLoading, setUiLoading] = useState(true);
     const [uiSummary, setUiSummary] = useState({});
     const [uiElements, setUiElements] = useState({});
+    const [errorText, setErrorText] = useState("");
+    const [openError, setOpenError] = useState(false);
 
     const handleExpand = (violation_id) => (event, isExpanded) => {
         setExpanded(isExpanded ? violation_id : null);
@@ -47,9 +50,14 @@ function AuditorContent() {
     useEffect(() => {
         const DoAudit = async () => {
             const audit = await GetAudit(url);
-            setImage(audit.image);
-            setViolations(audit.results.violations);
-            setLoading(false);
+            if (audit.error) {
+                setErrorText(audit.error);
+                setOpenError(true);
+            } else {
+                setImage(audit.image);
+                setViolations(audit.results.violations);
+                setLoading(false);                
+            }
         }
         DoAudit();
     },[url])
@@ -68,6 +76,7 @@ function AuditorContent() {
 
     return (
         <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 items-center justify-start flex flex-col pt-10">
+            <ErrorModal open={openError} errorMsg={errorText} />
             {loading ?
             (
                 <div className="text-gray-600 text-xl font-outfit space-y-2 items-center justify-center flex flex-col">
@@ -148,9 +157,23 @@ function AuditorContent() {
                                 </ToggleButtonGroup>
                             </Box>
                             {displayToggle ? <ViolationSummary violations={violations} violationRefs={violationRefs} handleExpand={handleExpand}/> : 
-                                (uiLoading ? <CircularProgress /> : 
-                                    (uiSummary && Object.keys(uiSummary).length > 0 ? <UISummary ui_summary={uiSummary}/> : <div>No UI summary available</div>)
-                                )
+                                (uiLoading ? (
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            minHeight: 200,
+                                            width: "100%"
+                                        }}
+                                    >
+                                        <CircularProgress />
+                                    </Box>
+                                ) : (
+                                    uiSummary && Object.keys(uiSummary).length > 0 
+                                        ? <UISummary ui_summary={uiSummary}/> 
+                                        : <div>No UI summary available</div>
+                                ))
                             }
                         </Box>
                     </Box>
