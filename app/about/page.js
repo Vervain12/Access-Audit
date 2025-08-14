@@ -54,7 +54,7 @@ export default function AboutPage() {
                         
                         <Box sx={{
                             width: '100%',
-                            height: 230,
+                            height: 290,
                             backgroundColor: '#f8fafc',
                             border: '2px dashed #cbd5e1',
                             borderRadius: 2,
@@ -64,7 +64,7 @@ export default function AboutPage() {
                             marginBottom: 3
                         }}>
                             <Image 
-                                src="/images/AuditImage.JPG"
+                                src="/images/AuditImage_2.JPG"
                                 width={600}
                                 height={800}
                                 alt="Picture of the accessibility audit" 

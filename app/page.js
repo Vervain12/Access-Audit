@@ -16,7 +16,7 @@ export default function Home() {
   };
  
   return (
-    <main className="w-full h-full bg-gradient-to-br bg-gray-50 via-blue-50 to-indigo-50 items-center justify-start flex flex-col pt-25 space-y-5">
+    <main className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 items-center justify-start flex flex-col pt-25 space-y-5">
       <Box 
         className="w-full max-w-4xl"
         sx={{
