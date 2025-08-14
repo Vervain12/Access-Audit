@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { GetAudit } from "../services/axe-core";
 import { Card, CardMedia, Box, Typography, Paper, ToggleButtonGroup, ToggleButton, CircularProgress, Tooltip } from "@mui/material";
@@ -11,7 +11,7 @@ import UISummary from "../components/ui-summary";
 import UiElements from "../components/ui-elements-list";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
-export default function Auditor() {
+function AuditorContent() {
     const searchParams = useSearchParams();
     const url = searchParams.get("url");
     const [image, setImage] = useState("");
@@ -162,5 +162,24 @@ export default function Auditor() {
                 </Paper>
             )}
         </div>
+    )
+}
+
+function AuditorLoading() {
+    return (
+        <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 items-center justify-start flex flex-col pt-10">
+            <div className="text-gray-600 text-xl font-outfit space-y-2 items-center justify-center flex flex-col">
+                <p>Loading...</p>
+                <LinearProgress color="primary" sx={{ width: "200%"}}/>
+            </div>
+        </div>
+    )
+}
+
+export default function Auditor() {
+    return (
+        <Suspense fallback={<AuditorLoading />}>
+            <AuditorContent />
+        </Suspense>
     )
 }
