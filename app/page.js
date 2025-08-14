@@ -16,7 +16,7 @@ export default function Home() {
   };
  
   return (
-    <main className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 items-center justify-start flex flex-col pt-30">
+    <main className="w-full h-full bg-gradient-to-br bg-gray-50 via-blue-50 to-indigo-50 items-center justify-start flex flex-col pt-25 space-y-5">
       <Box 
         className="w-full max-w-4xl"
         sx={{
@@ -77,6 +77,17 @@ export default function Home() {
             Begin Accessibility Audit
           </Button>
         </Box>
+      </Box>
+      <Box sx={{
+          backgroundColor: 'white',
+          borderRadius: 4,
+          padding: 2,
+          boxShadow: '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+          border: '1px solid rgba(0, 0, 0, 0.05)'
+        }}>
+          <Typography variant="h6" gutterBottom sx={{color: '#374151', fontWeight: 600, textAlign: 'center'}}>
+            Learn about our service <a href={"/about"} className="text-cyan-700 hover:text-cyan-800">here!</a>
+          </Typography>
       </Box>
     </main>
   );
