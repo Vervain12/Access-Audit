@@ -20,7 +20,7 @@ export default function AboutPage() {
                 <Typography variant="h3" gutterBottom sx={{color: '#374151', fontWeight: 700, textAlign: 'center', fontFamily: "inter"}}>
                     Making <span className="text-cyan-700">Accessibility</span> Easy
                 </Typography>
-                <Typography variant="subtitle1" gutterBottom sx={{color: '#374151', fontWeight: 700, fontSize: 20, textAlign: 'center', fontFamily: "inter", marginBottom: 5}}>
+                <Typography variant="subtitle1" gutterBottom sx={{color: '#374151', fontWeight: 700, fontSize: 20, textAlign: 'center', fontFamily: "inter", marginBottom: 2}}>
                     With <span className="text-cyan-700">Access</span>Audit, you can receive an AI-powered accessibility audit in seconds!
                 </Typography>
                 

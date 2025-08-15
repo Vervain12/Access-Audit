@@ -9,7 +9,7 @@ export default function Header() {
   ];
   
   return (
-    <header className="sticky top-0 z-50 w-full bg-gray-50 backdrop-blur-sm border-b border-blue-100/50 shadow-sm">
+    <header className="sticky top-0 z-50 w-full bg-white backdrop-blur-sm border-b border-blue-100/50 shadow-sm">
       <nav className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3 group hover:scale-105 transition-transform duration-200">

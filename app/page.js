@@ -40,7 +40,7 @@ export default function Home() {
           <TextField
             fullWidth
             variant="outlined"
-            label="Enter your website URL"
+            label="Enter your webpage URL"
             placeholder="https://example.com"
             value={websiteUrl}
             onChange={(e) => setWebsiteUrl(e.target.value)}
