@@ -1,5 +1,6 @@
 export async function GetAudit(url) {
     try {
+
         const response = await fetch('/api/axe-audit', {
             method: 'POST',
             headers: {

@@ -10,8 +10,12 @@ export default function Home() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (websiteUrl) {
-      console.log('Auditing URL:', websiteUrl);
-      router.push(`/auditor?url=${encodeURIComponent(websiteUrl)}`);
+      let url = websiteUrl;
+      if (!url.startsWith("https://")) {
+        url = "https://" + url;
+      }
+      console.log('Auditing URL:', url);
+      router.push(`/auditor?url=${encodeURIComponent(url)}`);
     }
   };
  
@@ -26,6 +30,8 @@ export default function Home() {
           boxShadow: '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
           border: '1px solid rgba(0, 0, 0, 0.05)'
         }}
+        component="form"
+        onSubmit={handleSubmit}
       >
         <div className="items-center justify-center text-center mb-10">
           <h1 className="text-5xl text-gray-700 font-display mb-4">
