@@ -64,7 +64,16 @@ export async function GetUIReview(image) {
         const data = await response.json();
         
         if (!response.ok) {
-            throw new Error(data.error || 'Failed to fetch ai summary.');
+            const text = await response.text();
+            console.error('API Error Response:', text);
+            throw new Error(`HTTP ${response.status}: ${text}`);
+        }
+
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text();
+            console.error('Non-JSON response:', text);
+            throw new Error('Expected JSON response');
         }
 
         return data;
