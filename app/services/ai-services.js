@@ -69,13 +69,6 @@ export async function GetUIReview(image) {
             throw new Error(`HTTP ${response.status}: ${text}`);
         }
 
-        const contentType = response.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-            const text = await response.text();
-            console.error('Non-JSON response:', text);
-            throw new Error('Expected JSON response');
-        }
-
         return data;
 
     } catch (err) {

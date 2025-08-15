@@ -49,10 +49,17 @@ export async function POST(request) {
       height: 768,
     });
 
-    const image = await page.screenshot({ fullPage: true });
+    const image = await page.screenshot({ 
+      fullPage: true,
+      type: 'jpeg',
+      quality: 80
+     });
     await browser.close();
 
     const imageBase64 = image.toString("base64");
+
+    const payloadSize = Buffer.byteLength(JSON.stringify({ results, image: imageBase64 }));
+    console.log(`Payload size: ${payloadSize} bytes`);
 
     return NextResponse.json({ results, image: imageBase64 });
 
