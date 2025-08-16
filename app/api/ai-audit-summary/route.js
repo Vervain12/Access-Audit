@@ -39,6 +39,15 @@ export async function POST(request) {
           - If several violations are related (e.g., multiple unlabeled controls), summarize the theme.
           - Explain *why it matters* in each fix when possible.
           - Only output the JSON. No markdown, no extra text.
+
+          Scoring Instructions:
+          - Base score starts at 100.
+          - For each violation:
+            - Critical impact → subtract 20 points
+            - Serious impact → subtract 15 points
+            - Moderate impact → subtract 5 points
+            - Minor impact → subtract 2 points
+          - Score cannot go below 1 or above 100.
           `
 
         const client = new OpenAI();
