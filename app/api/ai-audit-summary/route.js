@@ -67,8 +67,12 @@ export async function POST(request) {
         console.log(summary);
         return NextResponse.json({ data: summary }, { status: 200 });
 
-    } catch (error){
-        return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
+    } catch (error) {
+      console.error("OpenAI error:", error.status, error.code, error.message);
+      return NextResponse.json(
+        { error: error.message || "Request failed", code: error.code },
+        { status: error.status || 500 }
+      );
     }
 }
 

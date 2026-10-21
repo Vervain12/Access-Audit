@@ -16,14 +16,21 @@ export async function POST(request) {
     }
 
     const isLocal = !process.env.AWS_REGION;
-    const browser = await puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: isLocal
-        ? (await import("puppeteer")).executablePath()
-        : await chromium.executablePath(),
-      headless: chromium.headless,
-    });
+
+    const browser = await puppeteer.launch(
+      isLocal
+        ? {
+            executablePath: (await import("puppeteer")).executablePath(),
+            headless: true,
+            args: ["--no-sandbox", "--disable-setuid-sandbox"],
+          }
+        : {
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath(),
+            headless: chromium.headless,
+          }
+    );
 
     const page = await browser.newPage();
     await page.goto(url, {
