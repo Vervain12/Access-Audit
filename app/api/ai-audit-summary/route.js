@@ -87,12 +87,12 @@ Violations[Violation[id, impact, description, node count]]
       "fix": "A concise, informative explanation of how to fix this violation"
     },
     "priority-2": {
-      "violation-id": "The violation id from axe-core (second most critical)",
+      "violation-id": "The violation id from axe-core (2nd most critical)",
       "name": "A short explanation of the second most critical violation",
       "fix": "A concise, informative explanation of how to fix this violation"
     },
     "priority-3": {
-      "violation-id": "The violation id from axe-core (third most critical)",
+      "violation-id": "The violation id from axe-core (3rd most critical)",
       "name": "A short explanation of the third most critical violation",
       "fix": "A concise, informative explanation of how to fix this violation"
     }
